@@ -12,7 +12,7 @@ RUN apt-get install -y swig openssl python3-pip build-essential python3-dev libs
 COPY ./script/requirements.txt /
 RUN python3 -m pip install -r /requirements.txt
 
-# Copy our settings - removed - map volume in Docker instead
+# Copy our settings - removed - map volume in docker-compose instead
 #COPY ./config/Settings.Config /etc/incapsula/logs/config/Settings.Config
 
 # Run our script
