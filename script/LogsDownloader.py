@@ -328,7 +328,7 @@ class LogsDownloader:
             try:
                 rsa_private_key = M2Crypto.RSA.load_key_string(private_key)
                 content_decrypted_sym_key = rsa_private_key.private_decrypt(base64.b64decode(bytes(content_encrypted_sym_key, 'utf-8')), M2Crypto.RSA.pkcs1_padding)
-                uncompressed_and_decrypted_file_content = zlib.decompressobj().decompress(AES.new(base64.b64decode(bytearray(content_decrypted_sym_key)), AES.MODE_CBC, 16 * "\x00").decrypt(file_log_content))
+                uncompressed_and_decrypted_file_content = zlib.decompressobj().decompress(AES.new(base64.b64decode(bytearray(content_decrypted_sym_key)), AES.MODE_CBC, (16 * "\x00").encode("utf8")).decrypt(file_log_content))
                 # we check the content validity by checking the checksum
                 content_is_valid = self.validate_checksum(checksum, uncompressed_and_decrypted_file_content)
                 if not content_is_valid:

@@ -1,0 +1,10 @@
+version: '3'
+services:
+  imperva-logger:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    volumes:
+      - ./config:/etc/incapsula/logs/config
+      - ./logbuffer/imperva:/tmp/processed
